@@ -32,10 +32,10 @@ def classify_triangle(side_a, side_b, side_c):
 
     if side_a == side_b and side_b == side_c:
         return 'Equilateral'
-    if ((((side_a ** 2) + (side_b ** 2)) == (side_c ** 2)) or
+    elif ((((side_a ** 2) + (side_b ** 2)) == (side_c ** 2)) or
           (((side_a ** 2) + (side_c ** 2)) == (side_b ** 2)) or
           (((side_b ** 2) + (side_c ** 2)) == (side_a ** 2))):
         return 'Right'
-    if (side_a != side_b) and (side_b != side_c) and (side_a != side_c):
+    elif (side_a != side_b) and (side_b != side_c) and (side_a != side_c):
         return 'Scalene'
     return 'Isosceles'
