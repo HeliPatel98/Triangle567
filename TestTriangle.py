@@ -20,7 +20,7 @@ class TestTriangles(unittest.TestCase):
     # define multiple sets of tests as functions with names that begin
 
     def testInput1(self):
-        self.assertEqual(classify_triangle(0,1,2), 'Invalid Triangle')
+        self.assertEqual(classify_triangle(0, 1, 2), 'Invalid Triangle')
 
     def testInput2(self):
         self.assertEqual(classify_triangle(0, 0, 0), 'Invalid Triangle')
@@ -29,7 +29,7 @@ class TestTriangles(unittest.TestCase):
         self.assertEqual(classify_triangle(1, 1, 1), 'Equilateral')
 
     def testInput4(self):
-        self.assertEqual(classify_triangle(2,3,3), 'Isoceles')
+        self.assertEqual(classify_triangle(2, 3, 3), 'Isoceles')
 
     def testInput5(self):
         self.assertEqual(classify_triangle(0, 0, 200), 'Invalid Triangle')
@@ -47,10 +47,10 @@ class TestTriangles(unittest.TestCase):
         self.assertEqual(classify_triangle(2, 2, 3), 'Isoceles')
 
     def testInput10(self):
-        self.assertEqual(classify_triangle(15,20,25), 'right and scalene')
+        self.assertEqual(classify_triangle(15, 20, 25), 'right and scalene')
 
     def testInput11(self):
-        self.assertEqual(classify_triangle(7,7,7*math.sqrt(2)), 'right and isoceles')
+        self.assertEqual(classify_triangle(7, 7, 7 * math.sqrt(2)), 'right and isoceles')
 
 
 if __name__ == '__main__':

@@ -6,50 +6,36 @@ The primary goal of this file is to demonstrate a simple python program to class
 @author: jrr
 @author: rk
 """
-import math
 
-def classify_triangle(a_side, b_side, c_side):
 
-    """Check that series of values form a triangle"""
+def classify_triangle(side_a, side_b, side_c):
+    """
+    Classify Triangle
+    """
+    # verify that all 3 inputs are integers
+    # Python's "isinstance(object,type) returns True if the object is of the specified type
+    instance_list = [isinstance(side_a,int), isinstance(side_b,int), isinstance(side_c,int)]
+    if (max(side_a,side_b,side_c) > 200 or
+         min(side_a,side_b,side_c) < 0 or
+        not instance_list):
+        return 'InvalidInput'
+    # require that the input values be >= 0 and <= 200
+    if((side_a >= (side_b + side_c)) or
+            (side_b >= (side_a + side_c)) or
+            (side_c >= (side_a + side_b))):
+        return 'NotATriangle'
 
-    return_str = ""
+    # This information was not in the requirements spec but
+    # is important for correctness
+    # the sum of any two sides must be strictly less than the third side
+    # of the specified shape is not a triangle
 
-    non_zero = (a_side <= 0 or b_side <= 0 or c_side <= 0)
-    sides_compared = sides_comp(a_side,b_side,c_side)
-    max_triangle = over_max(a_side, b_side, c_side)
-
-    if non_zero or max_triangle or sides_compared:
-        return_str += "Invalid Triangle"
-    elif a_side == b_side and b_side == a_side and a_side == c_side:
-        return_str += "Equilateral"
-    elif math.isclose((a_side ** 2) + (b_side ** 2) , (c_side ** 2)):
-        if scalene_triangle(a_side,b_side,c_side):
-            return_str += "right and scalene"
-        elif isoceles_triangle(a_side,b_side,c_side):
-            return_str += "right and isoceles"
-        else:
-            return_str += "Right"
-    elif scalene_triangle(a_side,b_side,c_side):
-        return_str += "Scalene"
-    else:
-        return_str += "Isoceles"
-    return return_str
-
-def over_max(a_side,b_side,c_side):
-    """Check if any side is greater than 200"""
-    return (a_side > 200) or (b_side > 200) or (c_side > 200)
-
-def sides_comp(a_side, b_side, c_side):
-    """check if one side is greater than other two"""
-    greater_a = (a_side > (b_side + c_side))
-    greater_b = (b_side > (a_side + c_side))
-    greater_c = (c_side > (a_side + b_side ))
-    return greater_a or greater_b or greater_c
-
-def scalene_triangle(a_side, b_side, c_side):
-    """check if the triangle is scalene or not"""
-    return (a_side != b_side) and (b_side != c_side ) and (a_side != c_side)
-
-def isoceles_triangle(a_side, b_side, c_side):
-    """check if the triangle is isoceles or not"""
-    return (a_side == b_side) or (a_side == c_side) or (b_side == c_side)
+    if side_a == side_b and side_b == side_c:
+        return 'Equilateral'
+    if ((((side_a ** 2) + (side_b ** 2)) == (side_c ** 2)) or
+          (((side_a ** 2) + (side_c ** 2)) == (side_b ** 2)) or
+          (((side_b ** 2) + (side_c ** 2)) == (side_a ** 2))):
+        return 'Right'
+    if (side_a != side_b) and (side_b != side_c) and (side_a != side_c):
+        return 'Scalene'
+    return 'Isosceles'
